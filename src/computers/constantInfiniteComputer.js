@@ -4,15 +4,15 @@ var InfiniteComputer = require('./infiniteComputer.js');
 
 class ConstantInfiniteComputer extends InfiniteComputer {
   getTotalScrollableHeight(): number {
-    return this.heightData * this.numberOfChildren;
+    return (this.heightData/ this.itemsPerRow) * this.numberOfChildren;
   }
 
   getDisplayIndexStart(windowTop: number): number {
-    return Math.floor(windowTop / this.heightData);
+    return Math.floor(windowTop / this.heightData) * this.itemsPerRow;
   }
 
   getDisplayIndexEnd(windowBottom: number): number {
-    var nonZeroIndex = Math.ceil(windowBottom / this.heightData);
+    var nonZeroIndex = Math.ceil(windowBottom / (this.heightData / this.itemsPerRow));
     if (nonZeroIndex > 0) {
       return nonZeroIndex - 1;
     }
@@ -20,12 +20,12 @@ class ConstantInfiniteComputer extends InfiniteComputer {
   }
 
   getTopSpacerHeight(displayIndexStart: number): number {
-    return displayIndexStart * this.heightData;
+    return displayIndexStart * (this.heightData / this.itemsPerRow);
   }
 
   getBottomSpacerHeight(displayIndexEnd: number): number {
     var nonZeroIndex = displayIndexEnd + 1;
-    return Math.max(0, (this.numberOfChildren - nonZeroIndex) * this.heightData);
+    return Math.max(0, (this.numberOfChildren - nonZeroIndex) * (this.heightData / this.itemsPerRow));
   }
 }
 

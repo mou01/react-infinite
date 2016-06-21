@@ -47,6 +47,9 @@ var Infinite = React.createClass({
     onInfiniteLoad: React.PropTypes.func,
     loadingSpinnerDelegate: React.PropTypes.node,
 
+    // UITableView -> UICollectionView
+    itemsPerRow: React.PropTypes.number,
+
     isInfiniteLoading: React.PropTypes.bool,
     timeScrollStateLastsForAfterUserScrolls: React.PropTypes.number,
 
@@ -246,6 +249,7 @@ var Infinite = React.createClass({
     newState.infiniteComputer = infiniteHelpers.createInfiniteComputer(
       computedProps.elementHeight,
       computedProps.children,
+      computedProps.itemsPerRow, 
       computedProps.displayBottomUpwards
     );
 

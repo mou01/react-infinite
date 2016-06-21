@@ -4,9 +4,10 @@
 //  3. getDisplayIndexEnd()
 
 class InfiniteComputer {
-  constructor(heightData, numberOfChildren) {
+  constructor(heightData, numberOfChildren, itemsPerRow) {
     this.heightData = heightData;
     this.numberOfChildren = numberOfChildren;
+    this.itemsPerRow = itemsPerRow;
   }
 
   getTotalScrollableHeight() {

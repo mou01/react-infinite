@@ -5,7 +5,8 @@ var ArrayInfiniteComputer = require('../computers/arrayInfiniteComputer.js');
 var React = global.React || require('react');
 
 function createInfiniteComputer(data: ElementHeight,
-                                children: any): InfiniteComputer {
+                                children: any, 
+                                itemsPerRow: number): InfiniteComputer {
   var computer;
   var numberOfChildren = React.Children.count(children);
 
@@ -13,7 +14,7 @@ function createInfiniteComputer(data: ElementHeight,
   if (Array.isArray(data)) {
     computer = new ArrayInfiniteComputer(data, numberOfChildren);
   } else {
-    computer = new ConstantInfiniteComputer(data, numberOfChildren);
+    computer = new ConstantInfiniteComputer(data, numberOfChildren, itemsPerRow);
   }
   return computer;
 }
@@ -39,8 +40,7 @@ function recomputeApertureStateFromOptionsAndScrollTop({
       blockStart = preloadBatchSize * blockNumber,
       blockEnd = blockStart + preloadBatchSize,
       apertureTop = Math.max(0, blockStart - preloadAdditionalHeight),
-      apertureBottom = Math.min(infiniteComputer.getTotalScrollableHeight(),
-        blockEnd + preloadAdditionalHeight);
+      apertureBottom = Math.min(infiniteComputer.getTotalScrollableHeight(), blockEnd + preloadAdditionalHeight);
 
   return {
     displayIndexStart: infiniteComputer.getDisplayIndexStart(apertureTop),
