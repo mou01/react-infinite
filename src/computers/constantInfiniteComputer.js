@@ -4,7 +4,7 @@ var InfiniteComputer = require('./infiniteComputer.js');
 
 class ConstantInfiniteComputer extends InfiniteComputer {
   getTotalScrollableHeight(): number {
-    return (this.heightData/ this.itemsPerRow) * this.numberOfChildren;
+    return (this.heightData / this.itemsPerRow) * this.numberOfChildren;
   }
 
   getDisplayIndexStart(windowTop: number): number {
