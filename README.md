@@ -124,9 +124,6 @@ When working with the window as the scroll container, it is sometimes useful to 
 #### **Function** `handleScroll(DOMNode node)`
 Defaults to `function(){}`. A function that is called when the container is scrolled, i.e. when the `onScroll` event of the infinite scrolling container is fired. The only argument passed to it is the native DOM [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node) of the scrolling container.
 
-#### **Number** `infiniteLoadBeginBottomOffset`
-**Deprecated as of 0.6.0. Please use `infiniteLoadBeginEdgeOffset`, which is identical but renamed.**
-
 #### **Number** `infiniteLoadBeginEdgeOffset`
 Defaults to `undefined`, which means that infinite loading is disabled. To disable infinite loading, do not provide this property or set it to undefined.
 
@@ -164,7 +161,9 @@ Code samples are now available in the `/examples` directory for your perusal. Tw
 To get you started, here is some sample code that implements an infinite scroll with an simulated delay of 2.5 seconds. A [live demo of this example is available](http://chairnerd.seatgeek.com/react-infinite-a-browser-ready-efficient-scrolling-container-based-on-uitableview/) on our blog.
 
 ```js
-var ListItem = React.createClass({
+var createReactClass = require('create-react-class');
+
+var ListItem = createReactClass({
     render: function() {
         return <div className="infinite-list-item">
         List Item {this.props.num}
@@ -172,7 +171,7 @@ var ListItem = React.createClass({
     }
 });
 
-var InfiniteList = React.createClass({
+var InfiniteList = createReactClass({
     getInitialState: function() {
         return {
             elements: this.buildElements(0, 20),
